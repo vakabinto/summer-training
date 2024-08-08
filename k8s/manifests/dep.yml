@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: summer-app
+  labels:
+    app: summer-app
+spec:
+  selector:
+    matchLabels:
+      app: summer-app
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: summer-app
+    spec:
+      containers:
+      - name: summer-app
+        image: vakabinto/summer-app:v1 # Image that will be used to containers in the cluster
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # The port that the container is running on in the cluster
